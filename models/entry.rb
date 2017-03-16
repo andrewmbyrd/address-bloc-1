@@ -12,7 +12,7 @@ class Entry < BlocRecord::Base
   def method_missing(attempted_method_name, *args, &block)
     #we know the desired attribute starts after the chars find_by_, so position 8
     desired_attribute = attempted_method_name.slice(8, attempted_method_name.length - 1)
-    Entry.find_by(desired_attribute, args[0])
+    find_by(desired_attribute, args[0]) if desired_attribute.length > 1
   end
 
 end
